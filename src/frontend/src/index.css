@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    /* Sharp 0-radius — luxury brands don't round their corners */
+    --radius: 0rem;
+
+    /* ── LUXE Dark Theme ─────────────────────── */
+    --background: 0.075 0.002 260; /* #0B0B0C */
+    --foreground: 0.957 0.001 0; /* #F2F2F2 */
+    --card: 0.155 0.007 255; /* slightly elevated from bg */
+    --card-foreground: 0.957 0.001 0;
+    --popover: 0.17 0.007 255;
+    --popover-foreground: 0.957 0.001 0;
+
+    /* Primary = Gold */
+    --primary: 0.71 0.12 76;
+    --primary-foreground: 0.1 0 0;
+
+    /* Secondary = elevated surface */
+    --secondary: 0.2 0.007 255;
+    --secondary-foreground: 0.957 0.001 0;
+
+    /* Muted */
+    --muted: 0.17 0.006 255;
+    --muted-foreground: 0.6 0 0;
+
+    /* Accent = Gold */
+    --accent: 0.71 0.12 76;
+    --accent-foreground: 0.1 0 0;
+
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* Borders & Inputs */
+    --border: 0.24 0.006 255;
+    --input: 0.21 0.005 260;
+    --ring: 0.71 0.12 76;
+
+    /* Gold custom tokens */
+    --gold: 0.71 0.12 76; /* #C6A35A */
+    --gold-bright: 0.79 0.12 76; /* #E0C27A */
+    --gold-muted: 0.58 0.09 76;
+
+    /* Chart tokens */
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    /* Sidebar */
+    --sidebar: 0.1 0.003 260;
+    --sidebar-foreground: 0.957 0.001 0;
+    --sidebar-primary: 0.71 0.12 76;
+    --sidebar-primary-foreground: 0.1 0 0;
+    --sidebar-accent: 0.17 0.006 255;
+    --sidebar-accent-foreground: 0.957 0.001 0;
+    --sidebar-border: 0.24 0.006 255;
+    --sidebar-ring: 0.71 0.12 76;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--gold-muted));
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+  .text-gold-bright {
+    color: oklch(var(--gold-bright));
+  }
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+  .border-gold-bright {
+    border-color: oklch(var(--gold-bright));
+  }
+
+  /* Gold shimmer gradient for display text */
+  .text-gradient-gold {
+    background: linear-gradient(
+      125deg,
+      oklch(var(--gold-muted)) 0%,
+      oklch(var(--gold-bright)) 45%,
+      oklch(var(--gold)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Product card hover glow — border + ambient */
+  .card-gold-glow {
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .card-gold-glow:hover {
+    box-shadow: 0 0 0 1px oklch(var(--gold) / 0.7), 0 8px 40px
+      oklch(var(--gold) / 0.08), 0 2px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Luxury section divider */
+  .divider-gold {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(var(--gold) / 0.6) 30%,
+      oklch(var(--gold)) 50%,
+      oklch(var(--gold) / 0.6) 70%,
+      transparent 100%
+    );
+  }
+
+  /* Vertical rotated text — editorial signature */
+  .text-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
